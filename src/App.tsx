@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import type { IDictionaryEntry } from './types';
+import DictionaryEntry from './components/DictionaryEntry';
 
 function App() {
   const [searchResult, setSearchResult] = useState<IDictionaryEntry[]>([]);
@@ -14,16 +15,17 @@ function App() {
         <section className="">
           <SearchBar setSearchResult={setSearchResult} />
         </section>
-        <section>
+        <section className="flex flex-col py-6">
           {searchResult.map((item) => (
-            <div key={item.word}>
-              <h2>{item.word}</h2>
-            </div>
+            <DictionaryEntry entry={item} key={item.id} />
           ))}
         </section>
       </main>
       <footer className="text-center p-4">
-        <span className="text-sm text-slate-500">made by marcello</span>
+        <span className="text-sm text-slate-500">
+          made using{' '}
+          <a href="https://dictionaryapi.com/">Merriam-Webster API</a>
+        </span>
       </footer>
     </>
   );

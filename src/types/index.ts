@@ -1,22 +1,16 @@
 export interface IDictionaryEntry {
+  id: string;
   word: string;
-  phonetics: IPhonetic[];
-  meanings: IMeaning[];
-}
-
-export interface IPhonetic {
-  text?: string;
-  audio?: string;
-}
-
-export interface IMeaning {
+  pronunciation?: string;
+  audioUrl?: string;
   partOfSpeech: string;
   definitions: IDefinition[];
+  stems?: string[];
+  synonyms?: string[];
+  isOffensive?: boolean;
 }
 
 export interface IDefinition {
-  definition: string;
+  text: string;
   example?: string;
-  synonyms?: string[];
-  antonyms?: string[];
 }
