@@ -1,96 +1,108 @@
-import { Volume2 } from 'lucide-react';
-import type { IDictionaryEntry } from '../types';
+import type { IDictionaryEntry } from "../types";
 
 interface IDictionaryEntryProps {
-  entry: IDictionaryEntry;
+    entry: IDictionaryEntry;
+    word: string;
 }
 
-function DictionaryEntry({ entry }: IDictionaryEntryProps) {
-  const handleAudioPlay = (url: string | undefined) => {
-    if (url) {
-      new Audio(url).play();
-    }
-  };
+function DictionaryEntry({ entry, word }: IDictionaryEntryProps) {
+    return (
+        <div className="p-8 not-last:mb-8 bg-slate-50 shadow-md">
+            <h2 className="text-3xl font-bold text-slate-700 mb-4 flex items-center gap-2">
+                <span>{word}</span>
+                <span className="text-base text-slate-500 bg-slate-100 px-2 py-1 rounded">{entry.language.code}</span>
+                <span className="italic text-slate-500 text-lg font-medium">· {entry.partOfSpeech}</span>
+            </h2>
 
-  return (
-    <div
-      key={entry.id}
-      className="p-6 bg-white not-last:border-b-2 border-slate-300"
-    >
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-3xl font-bold text-slate-700">{entry.word}</h2>
-        {entry.audioUrl && (
-          <Volume2
-            className="text-xl text-slate-500 mr-auto ml-3 cursor-pointer hover:text-slate-700"
-            onClick={() => handleAudioPlay(entry.audioUrl)}
-          />
-        )}
-        {entry.pronunciation && (
-          <span className="text-slate-500">/{entry.pronunciation}/</span>
-        )}
-      </div>
+            {entry.pronunciations.length > 0 && (
+                <section className="mb-6">
+                    <h3 className="text-xl font-semibold text-slate-700 mb-2">Pronunciations</h3>
+                    <ul className="list-disc list-inside ml-4">
+                        {entry.pronunciations.map((pronouncation, index) => (
+                            <li key={index} className="text-slate-600 mb-1">
+                                {pronouncation.text}
+                                {pronouncation.tags.length > 0 && (
+                                    <em className="text-xs text-slate-400 ml-2">({pronouncation.tags.join(", ")})</em>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
 
-      <div className="mb-4">
-        <span className="text-slate-600 italic">{entry.partOfSpeech}</span>
-        {entry.isOffensive && (
-          <span className="ml-2 text-red-500 text-sm">(offensive term)</span>
-        )}
-      </div>
+            {entry.forms.length > 0 && (
+                <section className="mb-6">
+                    <h3 className="text-xl font-semibold text-slate-700 mb-2">Forms</h3>
+                    <ul className="list-disc list-inside ml-4">
+                        {entry.forms.map((form, index) => (
+                            <li key={index} className="text-slate-600 mb-1">
+                                {form.word}
+                                {form.tags.length > 0 && (
+                                    <em className="text-xs text-slate-400 ml-2">({form.tags.join(", ")})</em>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
 
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-2 text-slate-700">
-          Definitions:
-        </h3>
-        <ul className="list-disc pl-6 space-y-2">
-          {entry.definitions.map((def, index) => (
-            <li key={index}>
-              <p className="text-slate-700">{def.text}</p>
-              {def.example && (
-                <p className="text-slate-500 italic mt-1">
-                  Example: "{def.example}"
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {entry.synonyms && entry.synonyms.length > 0 && (
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2 text-slate-700">
-            Synonyms:
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {entry.synonyms.map((synonym, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 bg-slate-100 rounded-full text-slate-600 text-sm"
-              >
-                {synonym}
-              </span>
-            ))}
-          </div>
+            {entry.senses.length > 0 && (
+                <section className="mb-6">
+                    <h3 className="text-xl font-bold text-slate-700 mb-3">Senses</h3>
+                    <div>
+                        {entry.senses.map((sense, index) => (
+                            <details key={index} className="bg-white p-4 not-last:mb-6">
+                                <summary className="cursor-pointer font-semibold text-slate-700">
+                                    <span className="font-semibold text-slate-700">: {sense.definition}</span>
+                                    {sense.tags.length > 0 && (
+                                        <em className="text-xs text-slate-400 ml-2">({sense.tags.join(", ")})</em>
+                                    )}
+                                </summary>
+                                <div className="mt-2">
+                                    {sense.examples.length > 0 && (
+                                        <div className="mb-2">
+                                            <span className="font-semibold text-slate-700">Examples:</span>
+                                            <ul className="list-disc list-inside ml-4">
+                                                {sense.examples.map((ex, i) => (
+                                                    <li key={i} className="text-slate-600">
+                                                        {ex}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {sense.quotes.length > 0 && (
+                                        <div className="mb-2">
+                                            <span className="font-semibold text-slate-700">Quotes:</span>
+                                            <ul className="list-disc list-inside ml-4">
+                                                {sense.quotes.map((q, i) => (
+                                                    <li key={i} className="text-slate-600">
+                                                        <span className="italic text-slate-700">"{q.text}"</span>{" "}
+                                                        <em className="text-xs text-slate-400">- {q.reference}</em>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    {sense.synonyms.length > 0 && (
+                                        <div className="mb-2">
+                                            <span className="font-semibold text-slate-700">Synonyms: </span>
+                                            <span className="text-slate-700">{sense.synonyms.join(", ")}</span>
+                                        </div>
+                                    )}
+                                    {sense.antonyms.length > 0 && (
+                                        <div className="mb-2">
+                                            <span className="font-semibold text-slate-700">Antonyms: </span>
+                                            <span className="text-slate-700">{sense.antonyms.join(", ")}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </details>
+                        ))}
+                    </div>
+                </section>
+            )}
         </div>
-      )}
-
-      {entry.stems && entry.stems.length > 0 && (
-        <div>
-          <h3 className="text-lg font-semibold mb-2 text-slate-700">
-            Related forms:
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {entry.stems.map((stem, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 bg-slate-100 rounded-full text-slate-600 text-sm"
-              >
-                {stem}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    );
 }
 export default DictionaryEntry;

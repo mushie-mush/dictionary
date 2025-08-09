@@ -1,12 +1,8 @@
-import { parseMWResponse } from '../utils/parseMWData';
+import type { ISearchResult } from "../types";
 
-export const fetchDictionaryEntry = async (keyword: string) => {
-  const response = await fetch(
-    `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${keyword}?key=${
-      import.meta.env.VITE_MW_API_KEY
-    }`
-  );
-  const data = await response.json();
+export const fetchDictionaryEntry = async (keyword: string): Promise<ISearchResult> => {
+    const response = await fetch(`https://freedictionaryapi.com/api/v1/entries/en/${keyword}`);
+    const data = await response.json();
 
-  return data.map((entry: unknown) => parseMWResponse(entry));
+    return data;
 };
