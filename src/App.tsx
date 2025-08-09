@@ -1,39 +1,26 @@
-import { useState } from "react";
-import SearchBar from "./components/SearchBar";
-import type { ISearchResult } from "./types";
-import DictionaryEntry from "./components/DictionaryEntry";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Search from './pages/Search';
+import { SavedWordsProvider } from './contexts/SavedWordsProvider';
+import Saved from './pages/Saved';
 
 function App() {
-    const [searchResult, setSearchResult] = useState<ISearchResult>();
-
-    console.log("searchResult", searchResult);
-
-    return (
-        <>
-            <header className="flex p-4 text-slate-500">
-                <span className="text-md">Dictionary</span>
-            </header>
-            <main className="flex flex-col flex-auto justify-center w-full max-w-4xl mx-auto my-12 p-4">
-                <section className="">
-                    <SearchBar setSearchResult={setSearchResult} />
-                </section>
-                <section className="flex flex-col py-6 transition-all">
-                    {searchResult?.entries.map((entry) => (
-                        <DictionaryEntry
-                            entry={entry}
-                            word={searchResult.word}
-                            key={`${searchResult.word}-${entry.partOfSpeech}`}
-                        />
-                    ))}
-                </section>
-            </main>
-            <footer className="text-center p-4">
-                <span className="text-sm text-slate-500">
-                    made using <a href="https://freedictionaryapi.com/">Free Dictionary API</a>
-                </span>
-            </footer>
-        </>
-    );
+  return (
+    <SavedWordsProvider>
+      <BrowserRouter>
+        <Header />
+        <main className="flex flex-col flex-auto gap-8 justify-center w-full max-w-4xl mx-auto my-12 p-4">
+          <Routes>
+            <Route index element={<Search />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/saved" element={<Saved />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </SavedWordsProvider>
+  );
 }
 
 export default App;
