@@ -1,4 +1,4 @@
-import { BookmarkMinus, BookmarkPlus } from 'lucide-react';
+import { BookmarkCheck, BookmarkPlus } from 'lucide-react';
 import type { IDictionaryEntry } from '../types';
 import { useSavedWords } from '../hooks/useSavedWords';
 
@@ -18,21 +18,25 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-8 not-last:mb-8 border-2 border-slate-300 rounded-xl">
-      <div className="text-3xl font-bold text-slate-700 flex items-center gap-2">
+    <div className="flex flex-col gap-6 p-6 w-full border-y-2 border-y-transparent hover:shadow-xl hover:border-y-slate-800 hover:scale-101 transition-all">
+      <div className="text-4xl font-bold text-slate-800 flex items-center gap-2">
         <h2>{entry.word}</h2>
-        <span className="text-base text-slate-500 bg-slate-100 px-2 py-1 rounded">
+        <span className="text-base text-orange-600 bg-orange-100 px-2 py-1 rounded">
           {entry.language.code}
         </span>
         <span className="italic text-slate-500 text-lg font-medium">
           · {entry.partOfSpeech}
         </span>
         <button
-          className="ml-auto text-slate-300 cursor-pointer hover:text-slate-700"
+          className={`ml-auto text-slate-300 size-12 flex items-center justify-center rounded-md cursor-pointer ${
+            isWordSaved(entry.id)
+              ? 'hover:text-orange-600 hover:bg-orange-50'
+              : 'hover:text-slate-800 hover:bg-slate-100'
+          }`}
           onClick={handleWordSave}
         >
           {isWordSaved(entry.id) ? (
-            <BookmarkMinus className="size-10" />
+            <BookmarkCheck className="size-10 text-orange-600" />
           ) : (
             <BookmarkPlus className="size-10" />
           )}
@@ -41,7 +45,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
 
       {entry.pronunciations.length > 0 && (
         <section>
-          <h3 className="text-xl font-semibold text-slate-700 mb-2">
+          <h3 className="text-xl font-semibold text-slate-800 mb-2">
             Pronunciations
           </h3>
           <ul className="list-disc list-inside ml-4">
@@ -61,7 +65,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
 
       {entry.forms.length > 0 && (
         <section>
-          <h3 className="text-xl font-semibold text-slate-700 mb-2">Forms</h3>
+          <h3 className="text-xl font-semibold text-slate-800 mb-2">Forms</h3>
           <ul className="list-disc list-inside ml-4">
             {entry.forms.map((form, index) => (
               <li key={index} className="text-slate-600 mb-1">
@@ -79,7 +83,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
 
       {entry.senses.length > 0 && (
         <section>
-          <h3 className="text-xl font-bold text-slate-700 mb-3">Senses</h3>
+          <h3 className="text-xl font-bold text-slate-800 mb-3">Senses</h3>
           <div>
             {entry.senses.map((sense, index) => (
               <details

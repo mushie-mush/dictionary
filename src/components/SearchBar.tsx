@@ -22,14 +22,14 @@ function SearchBar({ isLoading }: ISearchBar) {
   };
 
   return (
-    <form className="relative w-full" onSubmit={handleSearchSubmit}>
+    <form className="relative w-full pt-6" onSubmit={handleSearchSubmit}>
       <input
         type="text"
         id="search"
         name="search"
         placeholder=" "
-        className="peer w-full py-4 px-6 border-b-2 border-slate-300 text-4xl font-bold text-slate-700 placeholder-transparent transition-all
-        focus:outline-none focus:border-slate-700"
+        className="peer w-full py-4 px-6 border-b-2 border-slate-400 text-4xl font-bold text-slate-800 placeholder-transparent transition-all
+        focus:outline-none focus:border-slate-800"
         onChange={handleSearchInput}
         value={keyword}
         autoComplete="off"
@@ -38,16 +38,16 @@ function SearchBar({ isLoading }: ISearchBar) {
       />
       <label
         htmlFor="search"
-        className="absolute left-6 -top-6 text-slate-700 text-xl font-normal pointer-events-none transition-all 
-              peer-placeholder-shown:top-4 peer-placeholder-shown:text-4xl peer-placeholder-shown:font-bold
-              peer-focus:-top-6 peer-focus:text-xl peer-focus:font-normal"
+        className="absolute left-6 top-1 text-slate-800 text-xl font-normal pointer-events-none transition-all 
+              peer-placeholder-shown:top-10 peer-placeholder-shown:text-4xl peer-placeholder-shown:font-bold
+              peer-focus:top-1 peer-focus:text-xl peer-focus:font-normal"
       >
-        What word are you looking for?
+        What <span className="text-orange-600">word</span> are you looking for?
       </label>
       {isLoading ? (
-        <LoaderCircle className="absolute top-5 right-6 size-8 text-slate-300 transition-all animate-spin peer-focus:text-slate-700" />
+        <LoaderCircle className="absolute top-10 right-6 size-8 text-slate-400 transition-all animate-spin peer-focus:text-slate-800" />
       ) : (
-        <Search className="absolute top-5 right-6 size-8 text-slate-300 transition-all peer-focus:text-slate-700" />
+        <Search className="absolute top-10 right-6 size-8 text-slate-400 transition-all peer-focus:text-slate-800" />
       )}
     </form>
   );

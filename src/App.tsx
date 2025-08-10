@@ -10,7 +10,7 @@ function App() {
     <SavedWordsProvider>
       <BrowserRouter>
         <Header />
-        <main className="flex flex-col flex-auto gap-8 justify-center w-full max-w-4xl mx-auto my-12 p-4">
+        <main className="flex flex-col flex-auto">
           <Routes>
             <Route index element={<Search />} />
             <Route path="/search" element={<Search />} />

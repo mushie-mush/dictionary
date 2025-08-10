@@ -35,14 +35,20 @@ function Search() {
 
   return (
     <>
-      <section className="">
-        <SearchBar isLoading={isLoading} />
+      <section className="bg-stone-200 flex flex-col flex-auto items-center justify-center pb-[64px] pt-[122px]">
+        <div className="w-full max-w-4xl">
+          <SearchBar isLoading={isLoading} />
+        </div>
       </section>
-      <section className="flex flex-col transition-all">
-        {dictionaryEntries.map((entry) => (
-          <DictionaryEntry entry={entry} key={entry.id} />
-        ))}
-      </section>
+      {dictionaryEntries.length > 0 && (
+        <section className="w-full flex flex-col items-center justify-center p-6">
+          <div className="flex flex-col items-center justify-center gap-6 w-full max-w-4xl">
+            {dictionaryEntries.map((entry) => (
+              <DictionaryEntry entry={entry} key={entry.id} />
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 }
