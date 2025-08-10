@@ -35,7 +35,7 @@ function Search() {
 
   return (
     <>
-      <section className="bg-stone-200 flex flex-col flex-auto items-center justify-center pb-[64px] pt-[122px]">
+      <section className="bg-stone-200 flex flex-col flex-auto items-center justify-center pb-[64px] pt-[122px] px-6">
         <div className="w-full max-w-4xl">
           <SearchBar isLoading={isLoading} />
         </div>
