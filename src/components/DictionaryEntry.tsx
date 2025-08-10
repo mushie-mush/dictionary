@@ -83,7 +83,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
 
       {entry.senses.length > 0 && (
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-3">Senses</h3>
+          <h3 className="text-xl font-bold text-slate-800 mb-3">Definitions</h3>
           <div>
             {entry.senses.map((sense, index) => (
               <details
