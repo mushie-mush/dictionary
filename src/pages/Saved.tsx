@@ -9,7 +9,7 @@ function Saved() {
       <h1 className="text-slate-700 text-4xl font-bold">Saved Words</h1>
       <div>
         {savedWords.map((entry) => (
-          <DictionaryEntry entry={entry} />
+          <DictionaryEntry entry={entry} key={entry.id} />
         ))}
       </div>
     </>
