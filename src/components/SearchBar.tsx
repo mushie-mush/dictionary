@@ -16,13 +16,17 @@ function SearchBar({ isLoading }: ISearchBar) {
     setKeyword(event.target.value);
   };
 
-  const handleSearchSubmit = async (event: FormEvent) => {
+  const handleSearchSubmit = (event: FormEvent) => {
     event.preventDefault();
     setSearchParams({ keyword: keyword });
   };
 
   return (
-    <form className="relative w-full pt-6" onSubmit={handleSearchSubmit}>
+    <form
+      className="relative w-full pt-6"
+      role="search"
+      onSubmit={handleSearchSubmit}
+    >
       <input
         type="text"
         id="search"
@@ -45,7 +49,10 @@ function SearchBar({ isLoading }: ISearchBar) {
         What <span className="text-orange-600">word</span> are you looking for?
       </label>
       {isLoading ? (
-        <LoaderCircle className="absolute top-10 right-6 size-8 text-slate-400 transition-all animate-spin peer-focus:text-slate-800" />
+        <LoaderCircle
+          data-testid="loading-icon"
+          className="absolute top-10 right-6 size-8 text-slate-400 transition-all animate-spin peer-focus:text-slate-800"
+        />
       ) : (
         <Search className="absolute top-10 right-6 size-8 text-slate-400 transition-all peer-focus:text-slate-800" />
       )}
