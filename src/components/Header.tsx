@@ -5,7 +5,7 @@ function Header() {
   const { totalSavedWords } = useSavedWords();
 
   return (
-    <header className="fixed flex align-center justify-between w-full py-2 px-6 text-slate-800">
+    <header className="fixed flex align-center justify-between w-full py-2 px-6 text-slate-800 z-10">
       <Link to="/" className="text-xl self-center">
         Dictionary
       </Link>

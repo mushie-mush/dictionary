@@ -1,5 +1,5 @@
 import { LoaderCircle, Search } from 'lucide-react';
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 interface ISearchBar {
@@ -11,6 +11,7 @@ function SearchBar({ isLoading }: ISearchBar) {
   const [keyword, setKeyword] = useState<string>(
     () => searchParams.get('keyword') || ''
   );
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
@@ -18,6 +19,7 @@ function SearchBar({ isLoading }: ISearchBar) {
 
   const handleSearchSubmit = (event: FormEvent) => {
     event.preventDefault();
+    inputRef.current?.blur();
     setSearchParams({ keyword: keyword });
   };
 
@@ -31,6 +33,7 @@ function SearchBar({ isLoading }: ISearchBar) {
         type="text"
         id="search"
         name="search"
+        ref={inputRef}
         placeholder=" "
         className="peer w-full py-4 px-6 border-b-2 border-slate-400 text-4xl font-bold text-slate-800 placeholder-transparent transition-all
         focus:outline-none focus:border-slate-800"

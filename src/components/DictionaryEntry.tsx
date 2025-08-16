@@ -1,4 +1,5 @@
 import { BookmarkCheck, BookmarkPlus } from 'lucide-react';
+import { motion } from 'motion/react';
 import type { IDictionaryEntry } from '../types';
 import { useSavedWords } from '../hooks/useSavedWords';
 
@@ -18,7 +19,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6 w-full border-y-2 border-y-transparent hover:shadow-xl hover:border-y-slate-800 hover:scale-101 transition-all">
+    <motion.div className="flex flex-col gap-6 p-6 w-full border-l-2 border-l-slate-800">
       <div className="text-4xl font-bold text-slate-800 flex items-center gap-2">
         <h2>{entry.word}</h2>
         <span className="text-base text-orange-600 bg-orange-100 px-2 py-1 rounded">
@@ -160,7 +161,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
           </div>
         </section>
       )}
-    </div>
+    </motion.div>
   );
 }
 export default DictionaryEntry;
