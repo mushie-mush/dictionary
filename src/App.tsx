@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Search from './pages/Search';
 import { SavedWordsProvider } from './contexts/SavedWordsProvider';
 import Saved from './pages/Saved';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Toaster position="bottom-right" />
       </BrowserRouter>
     </SavedWordsProvider>
   );
