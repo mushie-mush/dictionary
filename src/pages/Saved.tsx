@@ -7,8 +7,8 @@ function Saved() {
 
   return (
     <>
-      <motion.section className="bg-stone-200 flex flex-col items-center justify-center pb-[64px] pt-[122px]">
-        <h1 className="text-slate-800 text-4xl font-bold w-full max-w-4xl">
+      <motion.section className="bg-stone-200 flex flex-col items-center justify-center pb-[64px] pt-[122px] px-6">
+        <h1 className="text-slate-800 lg:text-5xl md:text-4xl text-3xl font-bold w-full max-w-4xl">
           Saved Words
         </h1>
       </motion.section>

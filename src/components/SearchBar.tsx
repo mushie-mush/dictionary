@@ -35,7 +35,7 @@ function SearchBar({ isLoading }: ISearchBar) {
         name="search"
         ref={inputRef}
         placeholder=" "
-        className="peer w-full py-4 px-6 border-b-2 border-slate-400 text-4xl font-bold text-slate-800 placeholder-transparent transition-all
+        className="peer w-full py-4 md:px-6 px-3 border-b-2 border-slate-400 text-4xl font-bold text-slate-800 placeholder-transparent transition-all
         focus:outline-none focus:border-slate-800"
         onChange={handleSearchInput}
         value={keyword}
@@ -45,19 +45,27 @@ function SearchBar({ isLoading }: ISearchBar) {
       />
       <label
         htmlFor="search"
-        className="absolute left-6 top-1 text-slate-800 text-xl font-normal pointer-events-none transition-all 
-              peer-placeholder-shown:top-10 peer-placeholder-shown:text-4xl peer-placeholder-shown:font-bold
+        className="hidden sm:inline absolute md:left-6 left-3 top-1 text-slate-800 text-xl font-normal pointer-events-none transition-all 
+              peer-placeholder-shown:md:top-8 peer-placeholder-shown:md:text-5xl peer-placeholder-shown:text-3xl peer-placeholder-shown:top-12 peer-placeholder-shown:font-bold
               peer-focus:top-1 peer-focus:text-xl peer-focus:font-normal"
       >
         What <span className="text-orange-600">word</span> are you looking for?
       </label>
+      <label
+        htmlFor="search"
+        className="inline sm:hidden absolute md:left-6 left-3 top-1 text-slate-800 text-xl font-normal pointer-events-none transition-all 
+              peer-placeholder-shown:md:top-8 peer-placeholder-shown:lg:text-5xl peer-placeholder-shown:md:text-4xl peer-placeholder-shown:text-3xl peer-placeholder-shown:top-12 peer-placeholder-shown:font-bold
+              peer-focus:top-1 peer-focus:text-xl peer-focus:font-normal"
+      >
+        Search for <span className="text-orange-600">word</span>
+      </label>
       {isLoading ? (
         <LoaderCircle
           data-testid="loading-icon"
-          className="absolute top-10 right-6 size-8 text-slate-400 transition-all animate-spin peer-focus:text-slate-800"
+          className="absolute md:top-10 top-12 right-6 size-8 text-slate-400 transition-all animate-spin peer-focus:text-slate-800"
         />
       ) : (
-        <Search className="absolute top-10 right-6 size-8 text-slate-400 transition-all peer-focus:text-slate-800" />
+        <Search className="absolute md:top-10 top-12 right-6 size-8 text-slate-400 transition-all peer-focus:text-slate-800" />
       )}
     </form>
   );

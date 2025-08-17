@@ -28,7 +28,7 @@ function DictionaryEntry({ entry }: IDictionaryEntryProps) {
   return (
     <motion.div
       layout
-      className="flex flex-col gap-6 p-6 w-full border-l-2 border-l-slate-800"
+      className="flex flex-col gap-6 md:p-6 p-4 w-full border-l-2 border-l-slate-800"
     >
       <div className="text-4xl font-bold text-slate-800 flex items-center gap-2">
         <h2>{entry.word}</h2>
