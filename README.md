@@ -22,7 +22,7 @@ This project is a simple dictionary application built using React, TypeScript, a
 1.  **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/mushie-mush/dictionary.git
     ```
 
 2.  **Install dependencies:**
